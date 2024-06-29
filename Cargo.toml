@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+clap = { version = "4.5.8", features = ["cargo", "debug", "derive", "env", "string", "unicode"] }
+regex = "1.10.5"
+serde = { version = "1.0.203", features = ["derive", "serde_derive"] }
+serde_json = "1.0.118"
