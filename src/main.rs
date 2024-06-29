@@ -1,5 +1,4 @@
-use std::{collections::HashMap, io::{self, BufRead}};
-
+use std::collections::HashMap;
 use clap::{arg, Command};
 
 fn cmd() -> Command {
