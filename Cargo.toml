@@ -3,6 +3,17 @@ name = "angr"
 version = "0.1.0"
 edition = "2021"
 
+description = "A tool to analyse ngrams in text files."
+authors = ["ash-entwisle"]
+
+license = "AGPL-3.0-or-later"
+license-file = "LICENSE"
+readme = "README.md"
+
+repository = "https://github.com/ash-entwisle/angr"
+homepage = "https://github.com/ash-entwisle/angr"
+
+
 [dependencies]
 clap = { version = "4.5.8", features = ["cargo", "derive", "env", "string", "unicode"] }
 regex = "1.10.5"
