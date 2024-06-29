@@ -1,10 +1,9 @@
-use std::{collections::HashMap, hash::Hash, str::FromStr};
+use std::collections::HashMap;
 
-use clap::{arg, builder::PossibleValue, value_parser, Command, ValueEnum};
-use serde_json::value;
+use clap::{arg, Command};
 
 fn cmd() -> Command {
-    Command::new("bga")
+    Command::new("angr")
         .about("A command line tool to to count the frequency of bigrams in a text file")
         .arg(arg!(file: <FILE> "The input file to read from"))
         .arg(arg!(n: -n --ngram <N> "The size of the n-gram to count").default_value("2"))
@@ -15,13 +14,12 @@ fn cmd() -> Command {
 fn main() {
 
     let matches = cmd().get_matches();
-
     let blank: String = "".to_string();
 
-    let file = matches.get_one::<String>("file").unwrap();
-    let n = u32::from_str(matches.get_one::<String>("n").unwrap().as_str()).unwrap();
-    let output = matches.get_one::<String>("output").unwrap_or(&blank);
-    let silent = matches.get_one::<bool>("silent").unwrap_or(&false);
+    let file: &String   = matches.get_one::<String>("file").unwrap();
+    let n: &u128        = matches.get_one::<u128>("n").unwrap_or(&2);
+    let output: &String = matches.get_one::<String>("output").unwrap_or(&blank);
+    let silent: &bool   = matches.get_one::<bool>("silent").unwrap_or(&false);
 
     let text = std::fs::read_to_string(file).unwrap();
 
@@ -32,7 +30,7 @@ fn main() {
         let word = word.chars().collect::<Vec<char>>();
         for i in 0..word.len() {
             let mut ngram = String::new();
-            for j in 0..n {
+            for j in 0..*n {
                 if (i + j as usize) < word.len() {
                     ngram.push(word[i + j as usize]);
                 }
@@ -46,7 +44,7 @@ fn main() {
     // sort the counts
     let mut counts = counts
         .into_iter()
-        .filter(|(ngram, _)| ngram.len() == n as usize)
+        .filter(|(ngram, _)| ngram.len() == *n as usize)
         .collect::<Vec<(String, usize)>>();
 
     counts.sort_by(|a, b| b.1.cmp(&a.1));
