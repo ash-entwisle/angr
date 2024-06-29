@@ -27,6 +27,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "angr"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "regex",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "anstream"
 version = "0.6.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -88,16 +98,6 @@ dependencies = [
  "miniz_oxide",
  "object",
  "rustc-demangle",
-]
-
-[[package]]
-name = "bigram-analysis"
-version = "0.1.0"
-dependencies = [
- "clap",
- "regex",
- "serde",
- "serde_json",
 ]
 
 [[package]]

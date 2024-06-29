@@ -1,5 +1,5 @@
 [package]
-name = "bigram-analysis"
+name = "angr"
 version = "0.1.0"
 edition = "2021"
 
